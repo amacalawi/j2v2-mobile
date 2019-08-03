@@ -1,6 +1,6 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController, IonList, LoadingController, ModalController, ToastController } from '@ionic/angular';
+import { AlertController, IonList, LoadingController, ModalController, ToastController, IonSlides, IonSegment } from '@ionic/angular';
 
 import { ScheduleFilterPage } from '../schedule-filter/schedule-filter';
 import { ConferenceData } from '../../providers/conference-data';
@@ -25,6 +25,14 @@ export class SchedulePage implements OnInit {
   shownSessions: any = [];
   groups: any = [];
   confDate: string;
+
+  //slides config
+  @ViewChild('approveSlider', {static: true}) slider: IonSlides;
+  @ViewChild('approveSegment', {static: true}) approveSegment: IonSegment;
+  slideOpts = {
+    initialSlide: 1,
+    speed: 400
+  };
 
   constructor(
     public alertCtrl: AlertController,
@@ -140,7 +148,29 @@ export class SchedulePage implements OnInit {
     await loading.onWillDismiss();
     fab.close();
   }
+
+  
+  onSegmentChange(ev: any) {
+    console.log(ev.detail)
+    this.slideTo(ev.detail.value);
+  }
+
+  
+  slideTo(index: number) {
+    this.slider.slideTo(index);
+  }
+
+    async onSlideDidChange() {
+    var index = await this.slider.getActiveIndex();
+    this.clickSegment(index);
+  }
+
+  clickSegment(index: any) {
+    this.approveSegment.value = index;
+  }
+
 }
+
 
 // var segment = document.querySelector('ion-segment');
 // var slides = document.querySelector('ion-slides');
