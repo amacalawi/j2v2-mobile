@@ -1,0 +1,182 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <!-- <ion-segment [(ngModel)]="segment" (ionChange)="updateSchedule()">
+      <ion-segment-button value="all">
+        All
+      </ion-segment-button>
+      <ion-segment-button value="favorites">
+        Favorites
+      </ion-segment-button>
+    </ion-segment> -->
+
+    <ion-toolbar>
+      <ion-searchbar [(ngModel)]="queryText" (ionChange)="updateSchedule()" placeholder="Search"></ion-searchbar>
+    </ion-toolbar>
+
+    <!-- <ion-buttons slot="end">
+      <ion-button (click)="presentFilter()">
+        <ion-icon slot="icon-only" name="options"></ion-icon>
+      </ion-button>
+    </ion-buttons> -->
+
+    <ion-buttons slot="end">
+      <ion-button (click)="presentPopover($event)">
+        <ion-icon slot="icon-only" name="more"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>  
+
+  <ion-toolbar color="primary">
+      <ion-segment scrollable>
+        <ion-segment-button value="0" checked>
+          <ion-icon name="call"></ion-icon>
+          <ion-label>Call</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="1">
+          <ion-icon name="cloud-upload"></ion-icon>
+          <ion-label>Publish</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="2">
+          <ion-icon name="paper"></ion-icon>
+          <ion-label>Topic</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="3">
+          <ion-icon name="code-working"></ion-icon>
+          <ion-label>Query</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="4">
+          <ion-icon name="open"></ion-icon>
+          <ion-label>Open</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="5">
+          <ion-icon name="search"></ion-icon>
+          <ion-label>Search</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="6">
+          <ion-icon name="create"></ion-icon>
+          <ion-label>Write</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="7">
+          <ion-icon name="book"></ion-icon>
+          <ion-label>Read</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="8">
+          <ion-icon name="trash"></ion-icon>
+          <ion-label>Trash</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+    </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+
+  <!-- <ion-tabs>
+    <ion-tab-bar slot="top">
+      <ion-tab-button tab="schedule">
+        <ion-icon name="calendar"></ion-icon>
+        <ion-label>Pending</ion-label>
+        <ion-badge>6</ion-badge>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="approved">
+        <ion-icon name="thumbs-up"></ion-icon>
+        <ion-label>Approved</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="disapproved">
+        <ion-icon name="thumbs-down"></ion-icon>
+        <ion-label>Disapproved</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs> -->
+
+  
+
+  <ion-slides>
+    <ion-slide class="slide-1">
+      Call
+    </ion-slide>
+    <ion-slide class="slide-2">
+      Publish
+    </ion-slide>
+    <ion-slide class="slide-3">
+      Topic
+    </ion-slide>
+    <ion-slide class="slide-1">
+      Query
+    </ion-slide>
+    <ion-slide class="slide-2">
+      Open
+    </ion-slide>
+    <ion-slide class="slide-3">
+      Search
+    </ion-slide>
+    <ion-slide class="slide-1">
+      Write
+    </ion-slide>
+    <ion-slide class="slide-2">
+      Read
+    </ion-slide>
+    <ion-slide class="slide-3">
+      Trash
+    </ion-slide>
+  </ion-slides>
+  <!-- <ion-list #scheduleList [hidden]="shownSessions === 0">
+    <ion-item-group *ngFor="let group of groups" [hidden]="group.hide">
+      <ion-item-divider sticky>
+        <ion-label>
+          {{group.time}}
+        </ion-label>
+      </ion-item-divider>
+
+      <ion-item-sliding *ngFor="let session of group.sessions" #slidingItem [attr.track]="session.tracks[0] | lowercase" [hidden]="session.hide">
+        <ion-item routerLink="/app/tabs/schedule/session/{{session.id}}">
+          <ion-label>
+            <h3>{{session.name}}</h3>
+            <p>
+              {{session.timeStart}} &mdash; {{session.timeEnd}}: {{session.location}}
+            </p>
+          </ion-label>
+        </ion-item>
+        <ion-item-options>
+          <ion-item-option color="favorite" (click)="addFavorite(slidingItem, session)" *ngIf="segment === 'all'">
+            Favorite
+          </ion-item-option>
+          <ion-item-option color="danger" (click)="removeFavorite(slidingItem, session, 'Remove Favorite')" *ngIf="segment === 'favorites'">
+            Remove
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-item-group>
+  </ion-list>
+  <ion-list-header [hidden]="shownSessions > 0">
+    No Sessions Found
+  </ion-list-header> -->
+
+  <!-- <ion-fab slot="fixed" vertical="bottom" horizontal="end" #fab>
+    <ion-fab-button><ion-icon name="share"></ion-icon></ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button color="vimeo" (click)="openSocial('Vimeo', fab)">
+        <ion-icon name="logo-vimeo"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="google" (click)="openSocial('Google+', fab)">
+        <ion-icon name="logo-googleplus"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="twitter" (click)="openSocial('Twitter', fab)">
+        <ion-icon name="logo-twitter"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="facebook" (click)="openSocial('Facebook', fab)">
+        <ion-icon name="logo-facebook"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab> -->
+</ion-content>
+
+
+
+

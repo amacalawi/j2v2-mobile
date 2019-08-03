@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Ionic Conference App</title>
+
+  <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
+
+  <meta name="theme-color" content="#387ef5">
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <base href="/">
+
+  <link rel="icon" type="image/x-icon" href="assets/img/appicon.png">
+
+  <link rel="apple-touch-icon" href="assets/img/appicon.png">
+
+  <link rel="manifest" href="manifest.json">
+</head>
+
+<body>
+
+  <app-root></app-root>
+
+  <!-- Replace the API key with your own, see:
+    https://developers.google.com/maps/documentation/javascript/get-api-key -->
+  <!-- <script async="" defer="" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8pf6ZdFQj5qw7rc_HSGrhUwQKfIe9ICw"></script> -->
+
+  <noscript>Please enable JavaScript to continue using this application.</noscript>
+  <script>
+    var segment = document.querySelector('ion-segment');
+    var slides = document.querySelector('ion-slides');
+
+    segment.addEventListener('ionChange', (ev) => onSegmentChange(ev));
+    slides.addEventListener('ionSlideDidChange', (ev) => onSlideDidChange(ev));
+
+    // On Segment change slide to the matching slide
+    function onSegmentChange(ev) {
+      slideTo(ev.detail.value);
+    }
+
+    function slideTo(index) {
+      slides.slideTo(index);
+    }
+
+    // On Slide change update segment to the matching value
+    async function onSlideDidChange(ev) {
+      var index = await slides.getActiveIndex();
+      clickSegment(index);
+    }
+
+    function clickSegment(index) {
+      segment.value = index;
+    }
+  </script>
+</body>
+
+</html>
